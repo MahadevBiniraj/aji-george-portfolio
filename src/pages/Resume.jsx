@@ -10,9 +10,9 @@ const CV = `${import.meta.env.BASE_URL}${resumeMeta.file}`;
 export default function Resume() {
   return (
     <>
-      <Seo title="Résumé / CV — Aji C. George" description="View and download the CV of Aji C. George — strategic finance and internal audit leader, UAE & GCC." />
+      <Seo title="Resume / CV — Aji C. George" description="View and download the CV of Aji C. George — strategic finance and internal audit leader, UAE & GCC." />
       <PageHero
-        eyebrow="Résumé / CV"
+        eyebrow="Resume / CV"
         title="The full curriculum vitae."
         intro="Read it inline below, or download the PDF. The document mirrors everything on this site — credentials, experience and quantified results."
       >

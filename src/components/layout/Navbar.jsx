@@ -67,7 +67,7 @@ export default function Navbar() {
 
           <div className="flex items-center gap-3">
             <Button to="/resume" size="sm" className="hidden sm:inline-flex" icon={<FontAwesomeIcon icon={faArrowRight} className="text-[0.7rem]" />}>
-              Résumé
+              Resume
             </Button>
             <button
               onClick={() => setOpen((v) => !v)}

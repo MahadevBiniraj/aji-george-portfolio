@@ -405,6 +405,6 @@ export const navAll = [
   { to: "/audit-risk", label: "Internal Audit & Risk" },
   { to: "/achievements", label: "Achievements" },
   { to: "/credentials", label: "Credentials" },
-  { to: "/resume", label: "Résumé / CV" },
+  { to: "/resume", label: "Resume / CV" },
   { to: "/contact", label: "Contact" },
 ];
