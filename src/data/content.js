@@ -7,6 +7,12 @@
 //  it here once and it propagates across every page.
 // ============================================================
 
+import cpaImg from "../assets/certificates/cpa.jpg";
+import ciaImg from "../assets/certificates/cia.jpg";
+import ccpImg from "../assets/certificates/ccp.jpg";
+import cimaImg from "../assets/certificates/cima.jpg";
+import cmaImg from "../assets/certificates/cma.jpg";
+
 export const profile = {
   name: "Aji C. George",
   initials: "ACG",
@@ -298,11 +304,11 @@ export const auditRisk = {
 };
 
 export const certifications = [
-  { abbr: "CPA", name: "Certified Public Accountant", body: "AICPA", region: "United States" },
-  { abbr: "CMA", name: "Certified Management Accountant", body: "IMA", region: "United States" },
-  { abbr: "CIA", name: "Certified Internal Auditor", body: "IIA", region: "Global" },
-  { abbr: "CCP", name: "Certified Cost Professional", body: "AACE International", region: "United States" },
-  { abbr: "CIMA", name: "Advanced Diploma in Management Accounting", body: "CIMA", region: "United Kingdom" },
+  { abbr: "CPA", name: "Certified Public Accountant", body: "AICPA", region: "United States", image: cpaImg },
+  { abbr: "CMA", name: "Certified Management Accountant", body: "IMA", region: "United States", image: cmaImg },
+  { abbr: "CIA", name: "Certified Internal Auditor", body: "IIA", region: "Global", image: ciaImg },
+  { abbr: "CCP", name: "Certified Cost Professional", body: "AACE International", region: "United States", image: ccpImg },
+  { abbr: "CIMA", name: "Advanced Diploma in Management Accounting", body: "CIMA", region: "United Kingdom", image: cimaImg },
 ];
 
 export const education = [

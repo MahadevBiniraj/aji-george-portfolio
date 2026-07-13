@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGraduationCap, faCertificate, faIdCard } from "@fortawesome/free-solid-svg-icons";
+import { faGraduationCap, faCertificate, faIdCard, faTimes, faExpand } from "@fortawesome/free-solid-svg-icons";
 import { certifications, education, skills, uaeCredentials } from "../data/content";
 import { Container, Seo, PageHero, SectionHeader, Eyebrow, Reveal } from "../components/ui";
 import CTABand from "../components/layout/CTABand";
+import { motion, AnimatePresence } from "framer-motion";
 
 const skillGroups = [
   { label: "Systems & ERP", items: skills.systems },
@@ -12,6 +13,8 @@ const skillGroups = [
 ];
 
 export default function Credentials() {
+  const [selectedCert, setSelectedCert] = useState(null);
+
   return (
     <>
       <Seo title="Credentials — Aji C. George" description="Five professional qualifications (CPA, CMA, CIA, CCP, CIMA), education, technical skills and UAE eligibility for Aji C. George." />
@@ -28,7 +31,7 @@ export default function Credentials() {
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {certifications.map((c, i) => (
               <Reveal key={c.abbr} delay={(i % 3) * 0.07}>
-                <article className="card card-hover flex h-full flex-col p-7">
+                <article className="card card-hover flex h-full flex-col p-7 relative">
                   <div className="flex items-center justify-between">
                     <span className="font-display text-[2.2rem] font-semibold leading-none text-ink">{c.abbr}</span>
                     <FontAwesomeIcon icon={faCertificate} className="text-champagne/70" />
@@ -39,10 +42,63 @@ export default function Credentials() {
                     <p className="font-mono text-[0.74rem] uppercase tracking-[0.1em] text-champagne">{c.body}</p>
                     <p className="mt-1 text-[0.82rem] text-slate">{c.region}</p>
                   </div>
+                  
+                  {c.image && (
+                    <button 
+                      onClick={() => setSelectedCert(c)}
+                      className="group mt-6 block w-full overflow-hidden rounded-xl border border-hairline bg-surface-2 transition-all hover:border-champagne/50 hover:shadow-sm"
+                    >
+                      <div className="relative flex h-56 w-full items-center justify-center p-2">
+                        <img 
+                          src={c.image} 
+                          alt={`${c.abbr} Certificate`} 
+                          className="h-full w-full object-contain transition-transform duration-500 hover:scale-[1.02]"
+                        />
+                        <div className="absolute right-3 top-3 flex items-center justify-center bg-ink/0 opacity-0 transition-opacity hover:opacity-100 group-hover:opacity-100">
+                          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-surface/90 text-ink shadow-sm backdrop-blur-md">
+                            <FontAwesomeIcon icon={faExpand} className="text-champagne" />
+                          </span>
+                        </div>
+                      </div>
+                    </button>
+                  )}
                 </article>
               </Reveal>
             ))}
           </div>
+          
+          <AnimatePresence>
+            {selectedCert && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setSelectedCert(null)}
+                className="fixed inset-0 z-[100] flex items-center justify-center bg-ink/90 p-4 backdrop-blur-sm sm:p-8"
+              >
+                <motion.div
+                  initial={{ scale: 0.95, opacity: 0, y: 20 }}
+                  animate={{ scale: 1, opacity: 1, y: 0 }}
+                  exit={{ scale: 0.95, opacity: 0, y: 20 }}
+                  onClick={(e) => e.stopPropagation()}
+                  className="relative flex max-h-full max-w-5xl flex-col items-center justify-center overflow-hidden rounded-2xl bg-surface p-2 shadow-2xl"
+                >
+                  <button
+                    onClick={() => setSelectedCert(null)}
+                    className="absolute right-4 top-4 z-10 grid h-10 w-10 place-items-center rounded-full bg-ink/10 text-ink backdrop-blur-md transition-colors hover:bg-ink/20"
+                    aria-label="Close"
+                  >
+                    <FontAwesomeIcon icon={faTimes} />
+                  </button>
+                  <img 
+                    src={selectedCert.image} 
+                    alt={selectedCert.name} 
+                    className="max-h-[85vh] w-auto rounded-xl object-contain"
+                  />
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </Container>
       </section>
 
